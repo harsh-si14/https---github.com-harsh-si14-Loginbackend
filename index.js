@@ -45,8 +45,7 @@ const loginPagePort = 6005;
 const databaseUrl = process.env.DATABASE_URL;
 
 mongoose.connect(databaseUrl , {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+  
     serverSelectionTimeoutMS: 60000 
 })
     .then(() => {
