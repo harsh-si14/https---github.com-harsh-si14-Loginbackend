@@ -44,7 +44,7 @@ const PORT = process.env.PORT || 6005;
 
 
 
-const databaseUrl = "mongodb+srv://harshvardhan7022002:HdoJr24PTzNtuXrD@login.vk9i1gn.mongodb.net/?retryWrites=true&w=majority&appName=Login";
+const databaseUrl = process.env.DATABASE_URL;
 
 
 mongoose.connect(databaseUrl , {
@@ -63,8 +63,8 @@ app.use("/api", route);
 app.use("/auth", authRouter);
 
 
-const clientid = "824790838650-6ucrjfo5b8v4hska2vtj42obcnf0jaii.apps.googleusercontent.com" ;
-const clientsecret = "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";
+const clientid = process.env.CLIENT_ID ;
+const clientsecret = process.env.CLIENT_SECRET;
 
 passport.use(new OAuth2Strategy({
     clientID: clientid,
