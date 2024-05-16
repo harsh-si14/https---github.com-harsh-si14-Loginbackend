@@ -14,6 +14,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+
+
 const app = express();
 
 
@@ -35,8 +37,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-const PORT = 7000;
-const loginPagePort = 6005;
+const PORT = 6005;
+
 
 
 
@@ -127,10 +129,12 @@ app.post('/register', (req, res) => {
 });
 
 
+
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
-app.listen(loginPagePort, () => {
-    console.log(`Login page server is running on port ${loginPagePort}`);
-});
+
+
+
