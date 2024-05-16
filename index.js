@@ -63,8 +63,8 @@ app.use("/api", route);
 app.use("/auth", authRouter);
 
 
-const clientid = process.env.CLIENT_ID ;
-const clientsecret = process.env.CLIENT_SECRET;
+const clientid = "824790838650-6ucrjfo5b8v4hska2vtj42obcnf0jaii.apps.googleusercontent.com" ;
+const clientsecret = "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";
 
 
 passport.use(new OAuth2Strategy({
