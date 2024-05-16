@@ -66,6 +66,7 @@ app.use("/auth", authRouter);
 const clientid = process.env.CLIENT_ID ;
 const clientsecret = process.env.CLIENT_SECRET;
 
+
 passport.use(new OAuth2Strategy({
     clientID: clientid,
     clientSecret: clientsecret,
