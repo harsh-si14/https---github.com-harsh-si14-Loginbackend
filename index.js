@@ -5,7 +5,7 @@ import cors from "cors";
 import session from "express-session";
 import passport from 'passport';
 import { Strategy as OAuth2Strategy } from "passport-google-oauth2";
-import bcrypt from 'bcrypt';
+
 
 import route from "./routes/userRoutes.js";
 import { router as authRouter } from './routes/auth.js';
@@ -105,28 +105,23 @@ app.post('/signin', (req, res) => {
     UserModel.findOne({ email: email })
         .then(user => {
             if (user) {
-                bcrypt.compare(password, user.password, (err, response) => {
-                    if (response) {
-                        res.json({ message: 'Success' });
-                    } else {
-                        res.json({ message: 'Wrong Password' });
-                    }
-                });
+                if (password === user.password) {
+                    res.json({ message: 'Success' });
+                } else {
+                    res.json({ message: 'Wrong Password' });
+                }
             } else {
                 res.json("No record");
             }
         })
+        .catch(err => res.status(500).json({ error: err.message }));
 });
 
 app.post('/register', (req, res) => {
     const { name, email, password } = req.body;
-    bcrypt.hash(password, 10)
-        .then(hash => {
-            UserModel.create({ name, email, password: hash })
-                .then(user => res.json({ message: "Registration successful. You can now log in." }))
-                .catch(err => res.status(400).json({ error: err.message }));
-        })
-        .catch(err => console.log(err.message));
+    UserModel.create({ name, email, password })
+        .then(user => res.json({ message: "Registration successful. You can now log in." }))
+        .catch(err => res.status(400).json({ error: err.message }));
 });
 
 
