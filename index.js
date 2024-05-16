@@ -21,7 +21,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors({
-    origin: "http://localhost:3001",
+    origin: "http://localhost:3000",
     methods: "GET,POST,PUT,DELETE",
     credentials: true
 }));
@@ -44,10 +44,11 @@ const PORT = 6005;
 
 
 
-const databaseUrl = process.env.DATABASE_URL;
+const databaseUrl = "mongodb+srv://harshvardhan7022002:HdoJr24PTzNtuXrD@login.vk9i1gn.mongodb.net/?retryWrites=true&w=majority&appName=Login";
+
 
 mongoose.connect(databaseUrl , {
-  
+   
     serverSelectionTimeoutMS: 60000 
 })
     .then(() => {
